@@ -16,8 +16,8 @@ public class CarWheelContoller : MonoBehaviour
     private float currentSteerAngle = 0f;
     void Start()
     {
-        carInputHandler = GetComponent<CarInputHandler>();
-        carRigidbody = GetComponent<Rigidbody>();
+        carInputHandler = GetComponentInParent<CarInputHandler>();
+        carRigidbody = GetComponentInParent<Rigidbody>();
     }
 
     void Update()
