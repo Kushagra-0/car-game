@@ -7,9 +7,11 @@ public class CarSpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] carPrefabs;
 
     private GameObject currentCar;
+    private TrafficManager trafficManager;
 
     void Awake()
     {
+        trafficManager = FindObjectOfType<TrafficManager>();
         SpwainFirstCar(0, new Vector3(260, 0.3f, -208), Quaternion.identity);
     }
 
@@ -23,6 +25,9 @@ public class CarSpawnManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
             SpawnCar(2);
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            SpawnCar(3);
     }
 
     public void SpwainFirstCar(int index, Vector3 position, Quaternion rotation)
@@ -30,8 +35,12 @@ public class CarSpawnManager : MonoBehaviour
         if (currentCar != null) Destroy(currentCar);
 
         currentCar = Instantiate(carPrefabs[index], position, rotation);
+        currentCar.tag = "PlayerCar";
 
         followCamera.Follow = currentCar.transform;
+
+        if (trafficManager != null)
+            trafficManager.SetPlayer(currentCar.transform);
     }
 
     public void SpawnCar(int index)
@@ -52,6 +61,8 @@ public class CarSpawnManager : MonoBehaviour
 
         // Assign camera to follow the car root
         followCamera.Follow = currentCar.transform;
-        // followCamera.LookAt = currentCar.transform;
+        
+        if (trafficManager != null)
+            trafficManager.SetPlayer(currentCar.transform);
     }
 }

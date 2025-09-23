@@ -24,7 +24,6 @@ public class CarInputHandler : MonoBehaviour
     void Update()
     {
         moveInput = inputActions.Player.Move.ReadValue<Vector2>();
-        Debug.Log(moveInput);
     }
 
     public Vector2 GetMoveInput()

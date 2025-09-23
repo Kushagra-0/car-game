@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 2000
   steering: 200
-  maxSpeed: 20
+  maxSpeed: 15
   minSpeedForSteering: 0.1
   downforce: 100
   dragCoefficient: 0.95
